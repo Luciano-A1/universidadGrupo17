@@ -10,12 +10,13 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class AlumnosDatos {
+
     private static Connection con = Conexion1.getConexion();
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
-      
-    public static void guardarAlumno(Alumno alumno){
-        
+
+    public static void guardarAlumno(Alumno alumno) {
+
         String sql = "insert into alumno(dni, apellido, nombre, fechaNacimiento, estado) value(?, ?, ?, ?, ?)";
         try {
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -24,7 +25,7 @@ public class AlumnosDatos {
             ps.setString(3, alumno.getNombre());
             ps.setDate(4, Date.valueOf(alumno.getFechaNacimiento()));
             ps.setBoolean(5, alumno.isEstado());
-            
+
             ps.executeUpdate();
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -35,35 +36,37 @@ public class AlumnosDatos {
             }
             ps.close();
             JOptionPane.showMessageDialog(null, ">>> Guardado <<<");
-            
+
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "Error al insertar " + ex.getMessage());
-            
+            JOptionPane.showMessageDialog(null, "Error al insertar " + ex.getMessage());
+
         }
     }
-    
-    public static void buscarAlumnosPorId(int id){
-        
+
+    public static void buscarAlumnosPorId(int id) {
+
         String sql = "select dni, apellido, nombre, fechaNacimiento from alumno where idAlumno = ? and estado = 1";
-        
+
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Alumno alumno = new Alumno();
+                alumno.setIdAlumno(id);
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                alumno.setEstado(true);
                 System.out.println(alumno);
-                
-                
+
             }
-            
-        } catch (Exception e) {
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: Acceso Alumno");
         }
+
     }
-    
-       
+
 }
