@@ -5,8 +5,7 @@
  */
 package universidadgrupo17;
 
-import AccesoDatos.Conexion1;
-import java.sql.Connection;
+
 
 /**
  *
@@ -18,8 +17,8 @@ public class UniversidadGrupo17 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Connection con=null;
-        con=Conexion1.getConexion();
+        
+      
     }
     
 }
