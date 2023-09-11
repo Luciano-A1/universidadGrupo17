@@ -51,7 +51,7 @@ public class AlumnosDatos {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 Alumno alumno = new Alumno();
                 alumno.setIdAlumno(id);
                 alumno.setDni(rs.getInt("dni"));
@@ -61,12 +61,41 @@ public class AlumnosDatos {
                 alumno.setEstado(true);
                 System.out.println(alumno);
 
+            } else {
+                JOptionPane.showMessageDialog(null, "Alumno no activo");
             }
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: Acceso Alumno");
         }
 
+    }
+
+    public static void buscarAlumnosPorDni(int dni) {
+
+        String sql = "select idAlumno, dni, apellido, nombre, fechaNacimiento from alumno where dni = ? and estado = 1";
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Alumno alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("dni"));
+                alumno.setApellido(rs.getString("apellido"));
+                alumno.setNombre(rs.getString("nombre"));
+                alumno.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                alumno.setEstado(true);
+                System.out.println(alumno);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Alumno no activo");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: Acceso Alumno");
+        }
     }
 
 }
