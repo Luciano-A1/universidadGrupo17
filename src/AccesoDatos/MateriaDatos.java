@@ -18,7 +18,7 @@ public class MateriaDatos {
     private static Connection con = Conexion1.getConexion();
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
-    private static List<Materia> listaMaterias = new ArrayList<>();
+    public static List<Materia> listaMaterias = new ArrayList<>();
 
     public static void guardarMateria(Materia materia) {
 
@@ -122,5 +122,25 @@ public class MateriaDatos {
         }
 
     }
+    
+    public static void eliminarMateria(int id){
+         String sql = "update materia set estado = 0 where idMateria = ?";
+         
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, "---> Materia Eliminada");
+            }else{
+                JOptionPane.showMessageDialog(null, "---> Materia inactiva");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceso a la tabla Materia" + ex.getMessage());
+        }
+         
+    }
+
 
 }

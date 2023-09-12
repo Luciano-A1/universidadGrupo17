@@ -18,7 +18,7 @@ public class AlumnosDatos {
     private static Connection con = Conexion1.getConexion();
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
-    private static List<Alumno> listaA = new ArrayList<>();
+    public static List<Alumno> listaA = new ArrayList<>();
 
     public static void guardarAlumno(Alumno alumno) {
 
