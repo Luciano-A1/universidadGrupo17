@@ -15,47 +15,15 @@ public class UniversidadGrupo17 {
         Alumno alu3 = new Alumno(42285655, "Bonacci", "Guadalupe", LocalDate.of(1998, 6, 24), true);
         Alumno alu4 = new Alumno(41885677, "Molina", "Luciano", LocalDate.of(1998, 1, 14), true); 
         Alumno alu5 = new Alumno(5,41995677, "Galeassi", "María Florencia", LocalDate.of(1998, 4, 14), true);
-       
-//        AlumnosDatos.guardarAlumno(alu1);
-//        AlumnosDatos.guardarAlumno(alu2);
-//        AlumnosDatos.guardarAlumno(alu3);
-//        AlumnosDatos.guardarAlumno(alu4);
-//        AlumnosDatos.guardarAlumno(alu5);
-//        AlumnosDatos.modicarAlumno(alu5);
-//        AlumnosDatos.guardarAlumno(alu1);
-//        AlumnosDatos.guardarAlumno(alu2);
-//        AlumnosDatos.guardarAlumno(alu3);
-//        AlumnosDatos.guardarAlumno(alu4);
 
-//        AlumnosDatos.listaAlumno();
-<<<<<<< Updated upstream
-//        AlumnosDatos.eliminarAlumno(7);
-//        AlumnosDatos.buscarAlumnosPorId(7);
 //------------------------------------------------------------------------------
-        Materia m1 = new Materia(1, 1, "Matematicas", true);
-        Materia m2 = new Materia(2, 2, "Historia", true);
-        Materia m3 = new Materia(3, 3, "Comunicaión", false);
-        Materia m4 = new Materia(4,1, "Programación I", true);
-        
-//        MateriaDatos.modicarMateria(m4);
-//        MateriaDatos.modicarMateria(m3);
-//        MateriaDatos.modicarMateria(m2);
-//        MateriaDatos.modicarMateria(m1);
+        Materia m1 = new Materia(1, "Matematicas", true);
+        Materia m2 = new Materia(2, "Historia", true);
+        Materia m3 = new Materia(3, "Comunicaión", false);
+        Materia m4 = new Materia(1,2, "Programación I", true);
+        MateriaDatos.listarMaterias();
 
-//        MateriaDatos.guardarMateria(m1);
-//        MateriaDatos.guardarMateria(m2);
-//        MateriaDatos.guardarMateria(m3);
-//        MateriaDatos.guardarMateria(m4);
-<<<<<<< HEAD
-//        MateriaDatos.buscarMateriaPorId(4);
-=======
-        AlumnosDatos.eliminarAlumno(5);
-//        AlumnosDatos.buscarAlumnosPorId(7);
-        
->>>>>>> Stashed changes
-=======
-//        MateriaDatos.buscarMateriaPorId(2);
->>>>>>> RamaSecundaria
+
     }
 
 }

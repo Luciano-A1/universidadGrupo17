@@ -9,7 +9,6 @@ import java.sql.SQLException;
 
 import java.sql.Statement;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,8 +18,7 @@ public class MateriaDatos {
     private static Connection con = Conexion1.getConexion();
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
-    private static List<Materia> listaM = new ArrayList<>();
-
+    private static List<Materia> listaMaterias = new ArrayList<>();
 
     public static void guardarMateria(Materia materia) {
 
@@ -76,9 +74,32 @@ public class MateriaDatos {
 
     }
 
+    public static void listarMaterias() {
+        String sqlMateria = "select * from materia";
+        try {
+            ps = con.prepareStatement(sqlMateria);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("Nombre"));
+                materia.setYear(rs.getInt("Año"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setEstado(rs.getBoolean("estado"));
+                listaMaterias.add(materia);
 
-    
-    
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de materias");
+        }
+//           System.out.println(listaMaterias);
+        System.out.println("Lista de Materias");
+        for (Materia materia : listaMaterias) {
+            System.out.println(materia.toString());
+            
+        }
+    }
+
     public static void modicarMateria(Materia materia) {
 
         String sql = "update materia set nombre = ?, año = ? where idMateria = ?";
@@ -101,8 +122,5 @@ public class MateriaDatos {
         }
 
     }
-    
-    
-    
 
 }
