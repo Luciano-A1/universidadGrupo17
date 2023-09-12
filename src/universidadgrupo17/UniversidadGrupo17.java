@@ -32,21 +32,30 @@ public class UniversidadGrupo17 {
 //        AlumnosDatos.eliminarAlumno(7);
 //        AlumnosDatos.buscarAlumnosPorId(7);
 //------------------------------------------------------------------------------
-        Materia m1 = new Materia(1998, "Matematicas", true);
-        Materia m2 = new Materia(1998, "Historia", true);
-        Materia m3 = new Materia(1998, "Comunicaión", false);
-        Materia m4 = new Materia(1997, "Programación I", true);
+        Materia m1 = new Materia(1, 1, "Matematicas", true);
+        Materia m2 = new Materia(2, 2, "Historia", true);
+        Materia m3 = new Materia(3, 3, "Comunicaión", false);
+        Materia m4 = new Materia(4,1, "Programación I", true);
+        
+//        MateriaDatos.modicarMateria(m4);
+//        MateriaDatos.modicarMateria(m3);
+//        MateriaDatos.modicarMateria(m2);
+//        MateriaDatos.modicarMateria(m1);
 
 //        MateriaDatos.guardarMateria(m1);
 //        MateriaDatos.guardarMateria(m2);
 //        MateriaDatos.guardarMateria(m3);
 //        MateriaDatos.guardarMateria(m4);
+<<<<<<< HEAD
 //        MateriaDatos.buscarMateriaPorId(4);
 =======
         AlumnosDatos.eliminarAlumno(5);
 //        AlumnosDatos.buscarAlumnosPorId(7);
         
 >>>>>>> Stashed changes
+=======
+//        MateriaDatos.buscarMateriaPorId(2);
+>>>>>>> RamaSecundaria
     }
 
 }
