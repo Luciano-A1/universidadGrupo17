@@ -18,7 +18,6 @@ public class MateriaDatos {
     private static Connection con = Conexion1.getConexion();
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
-    public static List<Materia> listaMaterias = new ArrayList<>();
 
     public static void guardarMateria(Materia materia) {
 
@@ -47,21 +46,20 @@ public class MateriaDatos {
 
     }
 
-    public static void buscarMateriaPorId(int id) {
+    public static Materia buscarMateriaPorId(int id) {
 
         String sql = "select nombre, año from materia where idMateria = ? and estado = 1";
+        Materia materia = new Materia();
 
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
-                Materia materia = new Materia();
                 materia.setIdMateria(id);
                 materia.setNombre(rs.getString("nombre"));
                 materia.setYear(rs.getInt("año"));
                 materia.setEstado(true);
-                System.out.println(materia);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Materia no encontrada");
@@ -71,10 +69,12 @@ public class MateriaDatos {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: Acceso Materia");
         }
+        return materia;
 
     }
 
-    public static void listarMaterias() {
+    public static List<Materia> listarMaterias() {
+        List<Materia> listaMaterias = new ArrayList<>();
         String sqlMateria = "select * from materia";
         try {
             ps = con.prepareStatement(sqlMateria);
@@ -92,11 +92,12 @@ public class MateriaDatos {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de materias");
         }
-        System.out.println("---> Lista de Materias");
+        System.out.println("---> Lista de Materias Registrada");
         for (Materia materia : listaMaterias) {
             System.out.println(materia.toString());
-            
+
         }
+        return listaMaterias;
     }
 
     public static void modicarMateria(Materia materia) {
@@ -121,25 +122,24 @@ public class MateriaDatos {
         }
 
     }
-    
-    public static void eliminarMateria(int id){
-         String sql = "update materia set estado = 0 where idMateria = ?";
-         
+
+    public static void eliminarMateria(int id) {
+        String sql = "update materia set estado = 0 where idMateria = ?";
+
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, "---> Materia Eliminada");
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "---> Materia inactiva");
             }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceso a la tabla Materia" + ex.getMessage());
         }
-         
-    }
 
+    }
 
 }

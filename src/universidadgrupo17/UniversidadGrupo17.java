@@ -18,13 +18,7 @@ public class UniversidadGrupo17 {
         Alumno alu4 = new Alumno(41885677, "Molina", "Luciano", LocalDate.of(1998, 1, 14), true);
         Alumno alu5 = new Alumno(41995677, "Galeassi", "María Florencia", LocalDate.of(1998, 4, 14), true);
 
-        AlumnosDatos.listaAlumno();
-
-//        AlumnosDatos.guardarAlumno(alu1);
-//        AlumnosDatos.guardarAlumno(alu2);
-//        AlumnosDatos.guardarAlumno(alu3);
-//        AlumnosDatos.guardarAlumno(alu4);
-//        AlumnosDatos.guardarAlumno(alu5);
+//        AlumnosDatos.listaAlumno();
 //------------------------------------------------------------------------------
         Materia m1 = new Materia(1, "Matematicas", true);
         Materia m2 = new Materia(1, "Historia", true);
@@ -32,24 +26,14 @@ public class UniversidadGrupo17 {
         Materia m4 = new Materia(1, "Programación I", true);
         Materia m5 = new Materia(2, "Programación II", true);
 
-        MateriaDatos.listarMaterias();
-
-//        MateriaDatos.guardarMateria(m1);
-//        MateriaDatos.guardarMateria(m2);
-//        MateriaDatos.guardarMateria(m3);
-//        MateriaDatos.guardarMateria(m4);
-//        MateriaDatos.guardarMateria(m5);
-        //MateriaDatos.eliminarMateria(5);
-        //MateriaDatos.listarMaterias();
-//        MateriaDatos.modicarMateria(m1);
-//        MateriaDatos.modicarMateria(m2);
-//        MateriaDatos.modicarMateria(m3);
-//        MateriaDatos.modicarMateria(m4);
+//        MateriaDatos.listarMaterias();
 //------------------------------------------------------------------------------
-        
-        Inscripcion insc1 = new Inscripcion(10, alu1.obtenerAlumnoCompleto(alu1), m2.obtenerMateriaCompleto(m2));
-
-        InscripcionDatos.guardarInscripcion(insc1);
+//        Alumno alumnoX = AlumnosDatos.buscarAlumnosPorDni(41885677);
+//        Materia materiaX = MateriaDatos.buscarMateriaPorId(2);
+//        Inscripcion insc1 = new Inscripcion(10, alumnoX, materiaX);
+//        InscripcionDatos.guardarInscripcion(insc1);
+//        InscripcionDatos.actualizarNota(4, 2, 5);
+        System.out.println("");
 
     }
 

@@ -65,18 +65,18 @@ public class Materia {
                 + "******************************";
     }
     
-    public Materia obtenerMateriaCompleto(Materia materia) {
-        List<Materia> listaMat = MateriaDatos.listaMaterias;
-        Materia mat = new Materia();
-        for (Materia objMat : listaMat) {
-            if (materia.getNombre().equals(objMat.getNombre())) {
-                mat.setIdMateria(objMat.getIdMateria());
-                mat.setNombre(objMat.getNombre());
-                mat.setYear(objMat.getYear());
-                mat.setEstado(objMat.isEstado());
-            }
-        }
-        return mat;
-    }
+//    public Materia obtenerMateriaCompleto(Materia materia) {
+//        List<Materia> listaMat = MateriaDatos.listaMaterias;
+//        Materia mat = new Materia();
+//        for (Materia objMat : listaMat) {
+//            if (materia.getNombre().equals(objMat.getNombre())) {
+//                mat.setIdMateria(objMat.getIdMateria());
+//                mat.setNombre(objMat.getNombre());
+//                mat.setYear(objMat.getYear());
+//                mat.setEstado(objMat.isEstado());
+//            }
+//        }
+//        return mat;
+//    }
 
 }

@@ -89,21 +89,21 @@ public class Alumno {
             "******************************";
     }
     
-    public Alumno obtenerAlumnoCompleto(Alumno alumno) {
-        List<Alumno> listaAlu = AlumnosDatos.listaA;
-        Alumno alu = new Alumno();
-        for (Alumno objAlu : listaAlu) {
-            if (alumno.getDni() == objAlu.getDni()) {
-                alu.setIdAlumno(objAlu.getIdAlumno());
-                alu.setDni(objAlu.getDni());
-                alu.setApellido(objAlu.getApellido());
-                alu.setNombre(objAlu.getNombre());
-                alu.setFechaNacimiento(objAlu.getFechaNacimiento());
-                alu.setEstado(objAlu.isEstado());
-            }
-        }
-        return alu;
-    }
+//    public Alumno obtenerAlumnoCompleto(Alumno alumno) {
+//        List<Alumno> listaAlu = AlumnosDatos.listaA;
+//        Alumno alu = new Alumno();
+//        for (Alumno objAlu : listaAlu) {
+//            if (alumno.getDni() == objAlu.getDni()) {
+//                alu.setIdAlumno(objAlu.getIdAlumno());
+//                alu.setDni(objAlu.getDni());
+//                alu.setApellido(objAlu.getApellido());
+//                alu.setNombre(objAlu.getNombre());
+//                alu.setFechaNacimiento(objAlu.getFechaNacimiento());
+//                alu.setEstado(objAlu.isEstado());
+//            }
+//        }
+//        return alu;
+//    }
     
     
 }
