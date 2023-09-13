@@ -92,8 +92,7 @@ public class MateriaDatos {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla de materias");
         }
-//           System.out.println(listaMaterias);
-        System.out.println("Lista de Materias");
+        System.out.println("---> Lista de Materias");
         for (Materia materia : listaMaterias) {
             System.out.println(materia.toString());
             

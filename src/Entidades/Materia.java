@@ -1,7 +1,10 @@
 package Entidades;
+import AccesoDatos.MateriaDatos;
+import java.util.List;
 
 public class Materia {
-    private int idMateria,year;
+
+    private int idMateria, year;
     private String nombre;
     private boolean estado;
 
@@ -55,13 +58,25 @@ public class Materia {
 
     @Override
     public String toString() {
-        return 
-                 "Id: " + idMateria+"\n"+
-                 "Nombre: " + nombre+"\n"+
-                 "Año: " + year+"\n"+
-                 "Estado: " + estado+"\n"+
-            "******************************";
-                
+        return    "Id: " + idMateria + "\n"
+                + "Nombre: " + nombre + "\n"
+                + "Año: " + year + "\n"
+                + "Estado: " + estado + "\n"
+                + "******************************";
     }
     
+    public Materia obtenerMateriaCompleto(Materia materia) {
+        List<Materia> listaMat = MateriaDatos.listaMaterias;
+        Materia mat = new Materia();
+        for (Materia objMat : listaMat) {
+            if (materia.getNombre().equals(objMat.getNombre())) {
+                mat.setIdMateria(objMat.getIdMateria());
+                mat.setNombre(objMat.getNombre());
+                mat.setYear(objMat.getYear());
+                mat.setEstado(objMat.isEstado());
+            }
+        }
+        return mat;
+    }
+
 }

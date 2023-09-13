@@ -1,16 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Entidades;
 
+import AccesoDatos.AlumnosDatos;
 import java.time.LocalDate;
+import java.util.List;
 
-/**
- *
- * @author Jeremias
- */
 public class Alumno {
     private int idAlumno,dni;
     private String apellido,nombre;
@@ -94,6 +87,22 @@ public class Alumno {
                  "Fecha de nacimiento: " + fechaNacimiento+"\n"+
                  "Estado: " + estado+"\n"+
             "******************************";
+    }
+    
+    public Alumno obtenerAlumnoCompleto(Alumno alumno) {
+        List<Alumno> listaAlu = AlumnosDatos.listaA;
+        Alumno alu = new Alumno();
+        for (Alumno objAlu : listaAlu) {
+            if (alumno.getDni() == objAlu.getDni()) {
+                alu.setIdAlumno(objAlu.getIdAlumno());
+                alu.setDni(objAlu.getDni());
+                alu.setApellido(objAlu.getApellido());
+                alu.setNombre(objAlu.getNombre());
+                alu.setFechaNacimiento(objAlu.getFechaNacimiento());
+                alu.setEstado(objAlu.isEstado());
+            }
+        }
+        return alu;
     }
     
     
