@@ -28,19 +28,19 @@ public class UniversidadGrupo17 {
 
 //        MateriaDatos.listarMaterias();
 //------------------------------------------------------------------------------
-<<<<<<< Updated upstream
+
 //        Alumno alumnoX = AlumnosDatos.buscarAlumnosPorDni(41885677);
 //        Materia materiaX = MateriaDatos.buscarMateriaPorId(2);
 //        Inscripcion insc1 = new Inscripcion(10, alumnoX, materiaX);
 //        InscripcionDatos.guardarInscripcion(insc1);
 //        InscripcionDatos.actualizarNota(4, 2, 5);
         System.out.println("");
-=======
+
         
       Inscripcion insc1 = new Inscripcion(10, alu1.obtenerAlumnoCompleto(alu1), m2.obtenerMateriaCompleto(m2));
 
       InscripcionDatos.guardarInscripcion(insc1);
->>>>>>> Stashed changes
+
 
     }
 

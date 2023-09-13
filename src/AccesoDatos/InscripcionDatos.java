@@ -86,5 +86,94 @@ public class InscripcionDatos {
             JOptionPane.showMessageDialog(null, "Error: Al acceder a la tabla inscripcion");
         }
     }
+    public static  List<Inscripcion> obtenerInscripciones(){
+        
+        String sqlBusqueda="select * from inscripcion";
+        try {
+            ps=con.prepareStatement(sqlBusqueda);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                 Inscripcion inscripcion=new Inscripcion();
+                 inscripcion.setIdInscripcion(rs.getInt("idInscripto"));
+                 Alumno alumno=AlumnosDatos.buscarAlumnosPorId(rs.getInt("idAlumno"));
+                 Materia materia=MateriaDatos.buscarMateriaPorId(rs.getInt("idMateria"));
+
+                 inscripcion.setAlumno(alumno);
+                 inscripcion.setMateria(materia);
+                 inscripcion.setNota(rs.getInt("Nota"));
+                 listaInsc.add(inscripcion);
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a los datos de las tablas"+ex.getMessage());
+        }
+       
+           return listaInsc;
+    }
+    public static List<Inscripcion> obtenerInscripcionPorAlumno(int id){
+
+        String sqlBusqueda="select * from inscripcion where idAlumno=?";
+        try {
+            ps=con.prepareStatement(sqlBusqueda);
+            ps.setInt(1, id);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Inscripcion inscripcion = new Inscripcion();
+                inscripcion.setIdInscripcion(rs.getInt("idInscripto"));
+                Alumno alumno=AlumnosDatos.buscarAlumnosPorId(rs.getInt("idAlumno"));
+                Materia materia=MateriaDatos.buscarMateriaPorId(rs.getInt("idMateria"));
+                inscripcion.setAlumno(alumno);
+                inscripcion.setMateria(materia);
+                inscripcion.setNota(rs.getInt("Nota"));
+                listaInsc.add(inscripcion);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a los datos de las tablas"+ex.getMessage());
+        }
+        return listaInsc;
+        
+    }
+    public static List<Materia> obtenerMateriasCursadas(int idA){
+        List<Materia> materia=new ArrayList<>();
+        Materia materia1 = new Materia();
+        String sqlBusqueda="select inscripcion.idMateria,nombre,año from inscripcion,materia where inscripcion.idMateria=materia.idMateria and inscripcion.idAlumno=?";
+        try {
+            ps=con.prepareStatement(sqlBusqueda);
+            ps.setInt(1,idA);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                materia1.setIdMateria(rs.getInt("idMateria"));
+                materia1.setNombre(rs.getString("Nombre"));
+                materia1.setYear(rs.getInt("Año"));
+                materia.add(materia1);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a los datos de la tabla inscripción"+ex.getMessage());
+        }
+        return materia;
+ 
+    }
+    public static List<Materia> obtenerMateriasNoCursadas(int idA){
+        List<Materia> materiaNoCursadas=new ArrayList<>();
+        Materia materiaNo = new Materia();
+        String sqlBusqueda="select * from materia where estado=1 and idMateria not in (select idMateria from inscripcion where idAlumno=?";
+        try {
+            ps=con.prepareStatement(sqlBusqueda);
+             ps.setInt(1,idA);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                materiaNo.setIdMateria(rs.getInt("idMateria"));
+                materiaNo.setNombre(rs.getString("Nombre"));
+                materiaNo.setYear(rs.getInt("Año"));
+                materiaNoCursadas.add(materiaNo);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a los datos de la tabla inscripción"+ex.getMessage());
+        }
+        return materiaNoCursadas;
+    }
 
 }
