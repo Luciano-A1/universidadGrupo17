@@ -19,7 +19,7 @@ public class InscripcionDatos {
     private static Connection con = Conexion1.getConexion();
     private static PreparedStatement ps = null;
     private static ResultSet rs = null;
-    private static List<Inscripcion> listaInsc = new ArrayList<>();
+   
 
     public static void guardarInscripcion(Inscripcion insc) {
 
@@ -87,14 +87,14 @@ public class InscripcionDatos {
         }
     }
     public static  List<Inscripcion> obtenerInscripciones(){
-        
+        List<Inscripcion> listaInsc = new ArrayList<>();
         String sqlBusqueda="select * from inscripcion";
         try {
             ps=con.prepareStatement(sqlBusqueda);
             rs=ps.executeQuery();
             while(rs.next()){
                  Inscripcion inscripcion=new Inscripcion();
-                 inscripcion.setIdInscripcion(rs.getInt("idInscripto"));
+                 inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
                  Alumno alumno=AlumnosDatos.buscarAlumnosPorId(rs.getInt("idAlumno"));
                  Materia materia=MateriaDatos.buscarMateriaPorId(rs.getInt("idMateria"));
 
@@ -112,7 +112,7 @@ public class InscripcionDatos {
            return listaInsc;
     }
     public static List<Inscripcion> obtenerInscripcionPorAlumno(int id){
-
+        List<Inscripcion> listaInsc = new ArrayList<>();
         String sqlBusqueda="select * from inscripcion where idAlumno=?";
         try {
             ps=con.prepareStatement(sqlBusqueda);
@@ -120,7 +120,7 @@ public class InscripcionDatos {
             rs=ps.executeQuery();
             while(rs.next()){
                 Inscripcion inscripcion = new Inscripcion();
-                inscripcion.setIdInscripcion(rs.getInt("idInscripto"));
+                inscripcion.setIdInscripcion(rs.getInt("idInscripcion"));
                 Alumno alumno=AlumnosDatos.buscarAlumnosPorId(rs.getInt("idAlumno"));
                 Materia materia=MateriaDatos.buscarMateriaPorId(rs.getInt("idMateria"));
                 inscripcion.setAlumno(alumno);
@@ -158,7 +158,7 @@ public class InscripcionDatos {
     public static List<Materia> obtenerMateriasNoCursadas(int idA){
         List<Materia> materiaNoCursadas=new ArrayList<>();
         Materia materiaNo = new Materia();
-        String sqlBusqueda="select * from materia where estado=1 and idMateria not in (select idMateria from inscripcion where idAlumno=?";
+        String sqlBusqueda="select * from materia where estado=1 and idMateria not in (select idMateria from inscripcion where idAlumno=?)";
         try {
             ps=con.prepareStatement(sqlBusqueda);
              ps.setInt(1,idA);
@@ -175,5 +175,27 @@ public class InscripcionDatos {
         }
         return materiaNoCursadas;
     }
-
+    public static List<Alumno> obtenerAlumnosPorMateria(int idM){
+        List<Alumno> alumnosPorMateria=new ArrayList<>();
+        String sqlBusqueda="select alumno.idAlumno,dni,nombre,apellido,fechaNacimiento,estado from inscripcion,alumno where inscripcion.idAlumno=alumno.idAlumno and idMateria=? and alumno.estado=1";
+        try {
+            ps=con.prepareStatement(sqlBusqueda);
+            ps.setInt(1, idM);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Alumno alumno = new Alumno();
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
+                alumno.setDni(rs.getInt("DNI"));
+                alumno.setApellido(rs.getString("Apellido"));
+                alumno.setNombre(rs.getString("Nombre"));
+                alumno.setFechaNacimiento(rs.getDate("FechaNacimiento").toLocalDate());
+                alumno.setEstado(rs.getBoolean("estado"));
+                alumnosPorMateria.add(alumno);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Error al acceder a los datos de las tablas"+ex.getMessage());
+        }
+        return alumnosPorMateria;
+    }
 }
