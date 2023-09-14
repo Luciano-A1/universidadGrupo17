@@ -136,16 +136,18 @@ public class InscripcionDatos {
     }
     public static List<Materia> obtenerMateriasCursadas(int idA){
         List<Materia> materia=new ArrayList<>();
-        Materia materia1 = new Materia();
-        String sqlBusqueda="select inscripcion.idMateria,nombre,año from inscripcion,materia where inscripcion.idMateria=materia.idMateria and inscripcion.idAlumno=?";
+       
+        String sqlBusqueda="select inscripcion.idMateria,nombre,año,estado from inscripcion,materia where inscripcion.idMateria=materia.idMateria and inscripcion.idAlumno=?";
         try {
             ps=con.prepareStatement(sqlBusqueda);
             ps.setInt(1,idA);
             rs=ps.executeQuery();
             while(rs.next()){
+                Materia materia1 = new Materia();
                 materia1.setIdMateria(rs.getInt("idMateria"));
                 materia1.setNombre(rs.getString("Nombre"));
                 materia1.setYear(rs.getInt("Año"));
+                materia1.setEstado(rs.getBoolean("estado"));
                 materia.add(materia1);
             }
             ps.close();
@@ -157,16 +159,18 @@ public class InscripcionDatos {
     }
     public static List<Materia> obtenerMateriasNoCursadas(int idA){
         List<Materia> materiaNoCursadas=new ArrayList<>();
-        Materia materiaNo = new Materia();
+        
         String sqlBusqueda="select * from materia where estado=1 and idMateria not in (select idMateria from inscripcion where idAlumno=?)";
         try {
             ps=con.prepareStatement(sqlBusqueda);
              ps.setInt(1,idA);
             rs=ps.executeQuery();
             while(rs.next()){
+                Materia materiaNo = new Materia();
                 materiaNo.setIdMateria(rs.getInt("idMateria"));
                 materiaNo.setNombre(rs.getString("Nombre"));
                 materiaNo.setYear(rs.getInt("Año"));
+                materiaNo.setEstado(rs.getBoolean("estado"));
                 materiaNoCursadas.add(materiaNo);
             }
             ps.close();
