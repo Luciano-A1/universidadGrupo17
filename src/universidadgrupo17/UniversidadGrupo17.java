@@ -99,9 +99,9 @@ public class UniversidadGrupo17 {
 //                System.out.println("Nombre: "+materia.toString());
 //        }
 //----------       ******************Materias No Cursadas********************* 
-           for (Materia materia:InscripcionDatos.obtenerMateriasNoCursadas(8)) {
-                System.out.println("Nombre: "+materia.toString());
-        }
+//           for (Materia materia:InscripcionDatos.obtenerMateriasNoCursadas(1)) {
+//                System.out.println("Nombre: "+materia.toString());
+//        }
 //----------       ******************Alumnos por Materia********************* 
 //             for(Alumno alumno:InscripcionDatos.obtenerAlumnosPorMateria(8)){
 //                  System.out.println("ID: "+alumno.getIdAlumno());
