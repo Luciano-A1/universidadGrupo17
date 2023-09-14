@@ -136,7 +136,7 @@ public class InscripcionDatos {
     }
     public static List<Materia> obtenerMateriasCursadas(int idA){
         List<Materia> materia=new ArrayList<>();
-       
+//       String sqlBusqueda="SELECT inscripcion.idMateria, nombre, año FROM inscripcion JOIN materia ON(inscripcion.idMateria=materia.idMateria) WHERE inscripcion.idAlumno =?";
         String sqlBusqueda="select inscripcion.idMateria,nombre,año,estado from inscripcion,materia where inscripcion.idMateria=materia.idMateria and inscripcion.idAlumno=?";
         try {
             ps=con.prepareStatement(sqlBusqueda);
