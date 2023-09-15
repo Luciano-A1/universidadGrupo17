@@ -8,6 +8,8 @@ package Vistas;
 import AccesoDatos.AlumnosDatos;
 import Entidades.Alumno;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author Jeremias
  */
 public class FormularioAlumno extends javax.swing.JInternalFrame {
-
+private boolean bandera=false;
     /**
      * Creates new form FormularioAlumno
      */
@@ -99,10 +101,20 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
         jBNuevo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBNuevo.setText("Nuevo");
         jBNuevo.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 0), java.awt.Color.black, java.awt.Color.blue, java.awt.Color.orange));
+        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNuevoActionPerformed(evt);
+            }
+        });
 
         jBGuardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBGuardar.setText("Guardar");
         jBGuardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 0), java.awt.Color.black, java.awt.Color.blue, java.awt.Color.orange));
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBEliminar.setText("Eliminar");
@@ -232,6 +244,41 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
 
        
     }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+       if(bandera){
+           try {
+       int dni = Integer.parseInt(jTDNI.getText());
+       if(jTApellido.getText().isEmpty()||jTNombre.getText().isEmpty()||jDateChooser1.getDate()==null){
+           JOptionPane.showMessageDialog(null,"No debe quedar campos vacíos");
+           return;
+       }
+       String apellido=jTApellido.getText();
+       String nombre=jTNombre.getText();
+       LocalDate fechaNacimiento=jDateChooser1.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+       Boolean estado=jRBEstado.isSelected();
+       Alumno alumno=new Alumno(dni, apellido, nombre, fechaNacimiento, estado);
+       AlumnosDatos.guardarAlumno(alumno);
+       bandera=false;
+           } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,"Para el DNI ingrese números "+e.getMessage());
+          }
+      
+     }else{
+          JOptionPane.showMessageDialog(null,"Debe presionar el botón Nuevo");
+      }  
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+       
+       bandera=true;
+       jTDNI.setText("");
+       jTApellido.setText("");
+       jTNombre.setText("");
+       jDateChooser1.setDate(null);
+       jRBEstado.setSelected(false);
+       
+    }//GEN-LAST:event_jBNuevoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
