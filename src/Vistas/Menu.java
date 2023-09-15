@@ -16,6 +16,8 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setLocationRelativeTo(null);
+//        setSize(600,500);
     }
 
     /**
@@ -70,6 +72,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu1.setText("Alumno");
 
         jMenuFormAlum.setText("Formulario de Alumno");
+        jMenuFormAlum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuFormAlumActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuFormAlum);
 
         jMenuBar1.add(jMenu1);
@@ -116,6 +123,16 @@ public class Menu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuFormAlumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormAlumActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        FormularioAlumno formularioAlumno = new FormularioAlumno();
+        formularioAlumno.setVisible(true);
+        Escritorio.add(formularioAlumno);
+        Escritorio.moveToFront(formularioAlumno);
+        
+    }//GEN-LAST:event_jMenuFormAlumActionPerformed
 
     /**
      * @param args the command line arguments
