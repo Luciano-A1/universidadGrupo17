@@ -42,8 +42,7 @@ public class MateriaDatos {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar " + ex.getMessage());
 
-        }
-
+        }   
     }
 
     public static Materia buscarMateriaPorId(int id) {
@@ -62,7 +61,7 @@ public class MateriaDatos {
                 materia.setEstado(true);
 
             } else {
-                JOptionPane.showMessageDialog(null, "Materia no encontrada");
+                JOptionPane.showMessageDialog(null, "Materia no encontrada o Inactiva");
             }
             ps.close();
 
@@ -140,6 +139,28 @@ public class MateriaDatos {
             JOptionPane.showMessageDialog(null, "Error al acceso a la tabla Materia" + ex.getMessage());
         }
 
+    }
+    
+    public static void guardarMateriaConId(Materia materia) {
+
+        String sql = "insert into materia(IdMateria, nombre, año, estado) value(?, ?, ?, ?)";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, materia.getIdMateria());
+            ps.setString(2, materia.getNombre());
+            ps.setInt(3, materia.getYear());
+            ps.setBoolean(4, materia.isEstado());
+            int p = ps.executeUpdate();
+            if (p > 0) {
+                JOptionPane.showMessageDialog(null, "Se agrego con exito");
+            }
+            ps.close();
+            JOptionPane.showMessageDialog(null, ">>> Guardado <<<");
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al insertar " + ex.getMessage());
+
+        }   
     }
 
 }

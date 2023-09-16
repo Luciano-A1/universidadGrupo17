@@ -81,6 +81,11 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jMenu1.setText("Alumno");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMenuFormAlum.setText("Formulario de Alumno");
         jMenuFormAlum.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +100,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.setText("Materia");
 
         jMenuFormMat.setText("Formulario de materia");
+        jMenuFormMat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuFormMatActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuFormMat);
 
         jMenuBar1.add(jMenu2);
@@ -168,6 +178,20 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.add(formularioInscripcion);
         Escritorio.moveToFront(formularioInscripcion);
     }//GEN-LAST:event_jMenuManInscripActionPerformed
+
+    private void jMenuFormMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormMatActionPerformed
+        // FormDeMat
+        this.Escritorio.removeAll();
+        this.Escritorio.repaint();
+        FormularioMateria formulariomateria = new FormularioMateria();
+        formulariomateria.setVisible(true);
+        this.Escritorio.add(formulariomateria);
+        this.Escritorio.moveToFront(formulariomateria);
+    }//GEN-LAST:event_jMenuFormMatActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
