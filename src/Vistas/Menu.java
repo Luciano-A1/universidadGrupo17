@@ -5,6 +5,10 @@
  */
 package Vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Jeremias
@@ -33,7 +37,14 @@ public class Menu extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
-        Escritorio = new javax.swing.JDesktopPane();
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/imagenes/EU.png"));
+        Image imagenEU = imagen.getImage();
+        Escritorio = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(imagenEU,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuFormAlum = new javax.swing.JMenuItem();
@@ -94,6 +105,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.add(jMenuAdminNota);
 
         jMenuManInscrip.setText("Manejo de inscripciones");
+        jMenuManInscrip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuManInscripActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuManInscrip);
 
         jMenuBar1.add(jMenu3);
@@ -106,6 +122,11 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.add(jMenu4);
 
         jMenu8.setText("Salir");
+        jMenu8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu8ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
@@ -133,6 +154,20 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.moveToFront(formularioAlumno);
         
     }//GEN-LAST:event_jMenuFormAlumActionPerformed
+
+    private void jMenu8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu8ActionPerformed
+       dispose();
+       //este método esta mal, no cierra la ventana
+    }//GEN-LAST:event_jMenu8ActionPerformed
+
+    private void jMenuManInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuManInscripActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        FormularioInscripcion formularioInscripcion = new FormularioInscripcion();
+        formularioInscripcion.setVisible(true);
+        Escritorio.add(formularioInscripcion);
+        Escritorio.moveToFront(formularioInscripcion);
+    }//GEN-LAST:event_jMenuManInscripActionPerformed
 
     /**
      * @param args the command line arguments

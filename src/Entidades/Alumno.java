@@ -80,13 +80,7 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return   "Id: " + idAlumno+"\n"+
-                 "DNI: "+dni+"\n"+
-                 "Apellido: "+apellido+"\n"+
-                 "Nombre: " + nombre+"\n"+
-                 "Fecha de nacimiento: " + fechaNacimiento+"\n"+
-                 "Estado: " + estado+"\n"+
-            "******************************";
+        return   idAlumno+", "+dni+", "+apellido+", "+nombre+", "+fechaNacimiento+", "+estado;
     }
     
 //    public Alumno obtenerAlumnoCompleto(Alumno alumno) {
