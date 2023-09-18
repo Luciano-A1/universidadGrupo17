@@ -112,6 +112,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.setText("Administración");
 
         jMenuAdminNota.setText("Administración de notas");
+        jMenuAdminNota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAdminNotaActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuAdminNota);
 
         jMenuManInscrip.setText("Manejo de inscripciones");
@@ -192,6 +197,15 @@ public class Menu extends javax.swing.JFrame {
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuAdminNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAdminNotaActionPerformed
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        CargaDeNotas cargaDeNotas = new CargaDeNotas();
+        cargaDeNotas.setVisible(true);
+        Escritorio.add(cargaDeNotas);
+        Escritorio.moveToFront(cargaDeNotas);
+    }//GEN-LAST:event_jMenuAdminNotaActionPerformed
 
     /**
      * @param args the command line arguments
