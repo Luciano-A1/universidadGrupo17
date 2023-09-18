@@ -7,6 +7,7 @@ package Vistas;
 import AccesoDatos.AlumnosDatos;
 import AccesoDatos.InscripcionDatos;
 import Entidades.Alumno;
+import Entidades.Inscripcion;
 import Entidades.Materia;
 import javax.swing.ButtonGroup;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author lucia
  */
 public class FormularioInscripcion extends javax.swing.JInternalFrame {
+    Materia materia;
 private DefaultTableModel modelo=new DefaultTableModel()
 {
      public boolean isCellEditable(int f,int c){
@@ -142,6 +144,11 @@ private DefaultTableModel modelo=new DefaultTableModel()
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -235,7 +242,12 @@ private DefaultTableModel modelo=new DefaultTableModel()
     }//GEN-LAST:event_jRBMatariasInscriptasActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        // TODO add your handling code here:
+        Alumno alumnoSeleccionado=(Alumno)jComboBox1.getSelectedItem();
+//        Inscripcion insc=new Inscripcion(null,alumnoSeleccionado,materia);//problema con la nota, tendría que dejarme ponerle vacío ya que la nota se carga en otro jframe
+        if(jComboBox1.getSelectedItem()!=null&&jRBMateriasNoInscriptas.isSelected()){
+//            InscripcionDatos.guardarInscripcion(insc);
+        }
+            
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
@@ -251,6 +263,16 @@ private DefaultTableModel modelo=new DefaultTableModel()
     private void jRBMateriasNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBMateriasNoInscriptasActionPerformed
         cargarTabla();
     }//GEN-LAST:event_jRBMateriasNoInscriptasActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int filaSeleccionada=jTable1.getSelectedRow();
+        if(filaSeleccionada!=-1){
+            int id=(int)jTable1.getValueAt(filaSeleccionada, 0);
+            String nombre=(String)jTable1.getValueAt(filaSeleccionada, 1);//no sé si será necesario pero por las dudas
+            int year=(int)jTable1.getValueAt(filaSeleccionada, 2);
+             materia = new Materia(year,nombre,true);
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
