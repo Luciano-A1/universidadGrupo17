@@ -243,9 +243,9 @@ private DefaultTableModel modelo=new DefaultTableModel()
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         Alumno alumnoSeleccionado=(Alumno)jComboBox1.getSelectedItem();
-//        Inscripcion insc=new Inscripcion(null,alumnoSeleccionado,materia);//problema con la nota, tendría que dejarme ponerle vacío ya que la nota se carga en otro jframe
+        Inscripcion insc=new Inscripcion(alumnoSeleccionado,materia);//problema con la nota, puse un constructor en la clase inscripcion donde le paso por parámetro un alumno y una materia
         if(jComboBox1.getSelectedItem()!=null&&jRBMateriasNoInscriptas.isSelected()){
-//            InscripcionDatos.guardarInscripcion(insc);
+            InscripcionDatos.guardarInscripcion(insc);
         }
             
     }//GEN-LAST:event_jBGuardarActionPerformed
@@ -270,7 +270,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
             int id=(int)jTable1.getValueAt(filaSeleccionada, 0);
             String nombre=(String)jTable1.getValueAt(filaSeleccionada, 1);//no sé si será necesario pero por las dudas
             int year=(int)jTable1.getValueAt(filaSeleccionada, 2);
-             materia = new Materia(year,nombre,true);
+             materia = new Materia(id,year,nombre,true);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
