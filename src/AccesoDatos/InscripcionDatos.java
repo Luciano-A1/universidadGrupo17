@@ -86,6 +86,7 @@ public class InscripcionDatos {
             JOptionPane.showMessageDialog(null, "Error: Al acceder a la tabla inscripcion");
         }
     }
+    
     public static  List<Inscripcion> obtenerInscripciones(){
         List<Inscripcion> listaInsc = new ArrayList<>();
         String sqlBusqueda="select * from inscripcion";
@@ -111,6 +112,7 @@ public class InscripcionDatos {
        
            return listaInsc;
     }
+    
     public static List<Inscripcion> obtenerInscripcionPorAlumno(int id){
         List<Inscripcion> listaInsc = new ArrayList<>();
         String sqlBusqueda="select * from inscripcion where idAlumno=?";
@@ -134,6 +136,7 @@ public class InscripcionDatos {
         return listaInsc;
         
     }
+    
     public static List<Materia> obtenerMateriasCursadas(int idA){
         List<Materia> materia=new ArrayList<>();
 //       String sqlBusqueda="SELECT inscripcion.idMateria, nombre, año FROM inscripcion JOIN materia ON(inscripcion.idMateria=materia.idMateria) WHERE inscripcion.idAlumno =?";
@@ -157,6 +160,7 @@ public class InscripcionDatos {
         return materia;
  
     }
+    
     public static List<Materia> obtenerMateriasNoCursadas(int idA){
         List<Materia> materiaNoCursadas=new ArrayList<>();
         
@@ -179,6 +183,7 @@ public class InscripcionDatos {
         }
         return materiaNoCursadas;
     }
+    
     public static List<Alumno> obtenerAlumnosPorMateria(int idM){
         List<Alumno> alumnosPorMateria=new ArrayList<>();
         String sqlBusqueda="select alumno.idAlumno,dni,nombre,apellido,fechaNacimiento,estado from inscripcion,alumno where inscripcion.idAlumno=alumno.idAlumno and idMateria=? and alumno.estado=1";
