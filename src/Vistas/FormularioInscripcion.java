@@ -32,6 +32,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
         ButtonGroup grupoMateria = new ButtonGroup();
         grupoMateria.add(jRBMatariasInscriptas);
         grupoMateria.add(jRBMateriasNoInscriptas);
+       
     }
 
     /**

@@ -166,8 +166,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuFormAlumActionPerformed
 
     private void jMenu8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu8ActionPerformed
-       dispose();
-       //este método esta mal, no cierra la ventana
+     this.setVisible(false);
+      
     }//GEN-LAST:event_jMenu8ActionPerformed
 
     private void jMenuManInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuManInscripActionPerformed
