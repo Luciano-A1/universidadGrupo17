@@ -238,7 +238,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRBMatariasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBMatariasInscriptasActionPerformed
-            cargarTabla();        // TODO add your handling code here:
+        cargarTabla();        // TODO add your handling code here:
     }//GEN-LAST:event_jRBMatariasInscriptasActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
@@ -270,7 +270,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
             int id=(int)jTable1.getValueAt(filaSeleccionada, 0);
             String nombre=(String)jTable1.getValueAt(filaSeleccionada, 1);//no sé si será necesario pero por las dudas
             int year=(int)jTable1.getValueAt(filaSeleccionada, 2);
-             materia = new Materia(id,year,nombre,true);
+            materia = new Materia(id,year,nombre,true);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
