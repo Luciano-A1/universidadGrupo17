@@ -123,7 +123,7 @@ public class AlumnosDatos {
 
             }
             ps.close();
-            JOptionPane.showMessageDialog(null, "Lista Registrada");
+//            JOptionPane.showMessageDialog(null, "Lista Registrada");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error: Acceso a la tabla de Alumnos");
         }

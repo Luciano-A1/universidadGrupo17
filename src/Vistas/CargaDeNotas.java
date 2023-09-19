@@ -8,6 +8,7 @@ import AccesoDatos.AlumnosDatos;
 import AccesoDatos.InscripcionDatos;
 import Entidades.Alumno;
 import Entidades.Inscripcion;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,16 +17,20 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CargaDeNotas extends javax.swing.JInternalFrame {
 
-   private DefaultTableModel modelo = new DefaultTableModel() {
+    private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
+            if (c == 2) {
+                return true;
+            }
             return false;
         }
     };
-   
+
     public CargaDeNotas() {
         initComponents();
         armarCabeceraTabla();
         cargarComboBox();
+
     }
 
     /**
@@ -66,10 +71,20 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         jBGuardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBGuardar.setText("Guardar");
         jBGuardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 0), java.awt.Color.black, java.awt.Color.blue, java.awt.Color.orange));
+        jBGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBGuardarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBSalir.setText("Salir");
         jBSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 0), java.awt.Color.black, java.awt.Color.blue, java.awt.Color.orange));
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
 
         jcbAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +172,15 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         cargarTabla();
     }//GEN-LAST:event_jcbAlumnoActionPerformed
 
+    private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
+        actualizarNotas();
+
+    }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jBSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBGuardar;
@@ -169,24 +193,38 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
     private javax.swing.JTable jtNotas;
     // End of variables declaration//GEN-END:variables
 
-private void armarCabeceraTabla(){
-    modelo.addColumn("ID");
-    modelo.addColumn("Materia");
-    modelo.addColumn("Nota");
-    jtNotas.setModel(modelo);
-}
-private void cargarComboBox(){
-    for(Alumno alumno:AlumnosDatos.listarAlumno()){
-        jcbAlumno.addItem(alumno);
+    private void armarCabeceraTabla() {
+        modelo.addColumn("ID");
+        modelo.addColumn("Materia");
+        modelo.addColumn("Nota");
+        jtNotas.setModel(modelo);
     }
-}
 
-private void cargarTabla(){
-    modelo.setRowCount(0);
-    Alumno alumnoSeleccionado=(Alumno)jcbAlumno.getSelectedItem();
-    int idA=alumnoSeleccionado.getIdAlumno();
-    for (Inscripcion insc : InscripcionDatos.obtenerInscripcionPorAlumno(idA)) {
-        modelo.addRow(new Object[]{insc.getMateria().getIdMateria(),insc.getMateria().getNombre(),insc.getNota()});
+    private void cargarComboBox() {
+        for (Alumno alumno : AlumnosDatos.listarAlumno()) {
+            jcbAlumno.addItem(alumno);
+        }
     }
-}
+
+    private void cargarTabla() {
+        modelo.setRowCount(0);
+        Alumno alumnoSeleccionado = (Alumno) jcbAlumno.getSelectedItem();
+        int idA = alumnoSeleccionado.getIdAlumno();
+        for (Inscripcion insc : InscripcionDatos.obtenerInscripcionPorAlumno(idA)) {
+            modelo.addRow(new Object[]{insc.getMateria().getIdMateria(), insc.getMateria().getNombre(), insc.getNota()});
+        }
+    }
+
+    public void actualizarNotas() {
+        int fila = jtNotas.getSelectedRow();
+        
+        int idMat = Integer.parseInt(this.jtNotas.getValueAt(fila, 0).toString());
+        int nota = Integer.parseInt(this.jtNotas.getValueAt(fila, 2).toString());
+        
+        Alumno idAlum = (Alumno) jcbAlumno.getSelectedItem();
+        InscripcionDatos.actualizarNota(idAlum.getIdAlumno(), idMat, nota);
+
+    }
+  
+    
 }
