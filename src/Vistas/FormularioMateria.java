@@ -254,7 +254,8 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
         // nuevo
         bandera = true;
-        this.jtCod.setText("");
+        this.jtCod.setText("******");
+        this.jtCod.setEditable(false);
         this.jtNom.setText("");
         this.jtAño.setText("");
         this.jRBEstado.setSelected(false);
@@ -265,24 +266,40 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
 
         if (bandera) {
             try {
+<<<<<<< HEAD
                 int idMateria = Integer.parseInt(this.jtCod.getText());
+=======
+//                int idMateria = Integer.parseInt(this.jtCod.getText());
+>>>>>>> RamaSecundaria
                 if (this.jtNom.getText().isEmpty() || this.jtAño.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No debe quedar campos vacíos", " Error ", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 String nom = this.jtNom.getText();
                 int anio = Integer.parseInt(this.jtAño.getText());
+<<<<<<< HEAD
                 Boolean estado = jRBEstado.isSelected();
                 Materia materiaX = new Materia(idMateria, anio, nom, estado);
                 MateriaDatos.guardarMateriaConId(materiaX);
+=======
+                Boolean est = jRBEstado.isSelected();
+//                Materia materiaX = new Materia(idMateria, anio, nom, estado);
+//                MateriaDatos.guardarMateriaConId(materiaX);
+                MateriaDatos.guardarMateria(new Materia(anio, nom, est));
+                this.jtCod.setText("");
+                this.jtCod.setEditable(false);
+                this.jtNom.setText("");
+                this.jtAño.setText("");
+                this.jRBEstado.setSelected(false);
+>>>>>>> RamaSecundaria
                 bandera = false;
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Para el Codigo ingrese números " + e.getMessage(), " Error ", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Para el Año ingrese solamente números " + e.getMessage(), " Error ", JOptionPane.ERROR_MESSAGE);
             }
 
         } else {
             JOptionPane.showMessageDialog(null, "Debe presionar el botón Nuevo", " Error ", JOptionPane.ERROR_MESSAGE);
-            
+
         }
 
     }//GEN-LAST:event_jBGuardarActionPerformed
@@ -295,7 +312,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         this.jtNom.setText("");
         this.jtAño.setText("");
         this.jRBEstado.setSelected(false);
-        
+
     }//GEN-LAST:event_jBEliminarActionPerformed
 
 

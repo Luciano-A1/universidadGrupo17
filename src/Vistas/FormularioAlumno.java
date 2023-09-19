@@ -152,9 +152,22 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jTNombre))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+<<<<<<< HEAD
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
                                 .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+=======
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(24, 24, 24)
+                                        .addComponent(jRBEstado))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(44, 44, 44)
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+>>>>>>> RamaSecundaria
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(197, 197, 197)
                         .addComponent(jBNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
