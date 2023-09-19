@@ -265,16 +265,16 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
 
         if (bandera) {
             try {
-                int idMateria = Integer.parseInt(this.jtCod.getText());
+                int idMat = Integer.parseInt(this.jtCod.getText());
                 if (this.jtNom.getText().isEmpty() || this.jtAño.getText().isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No debe quedar campos vacíos", " Error ", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 String nom = this.jtNom.getText();
                 int anio = Integer.parseInt(this.jtAño.getText());
-                Boolean estado = jRBEstado.isSelected();
-                Materia materiaX = new Materia(idMateria, anio, nom, estado);
-                MateriaDatos.guardarMateriaConId(materiaX);
+                Boolean est = jRBEstado.isSelected();
+                MateriaDatos.guardarMateria(new Materia(anio, nom, est));
+                MateriaDatos.modicarMateria(new Materia(idMat, anio, nom, est));
                 bandera = false;
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Para el Codigo ingrese números " + e.getMessage(), " Error ", JOptionPane.ERROR_MESSAGE);

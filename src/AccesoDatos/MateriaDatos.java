@@ -42,7 +42,7 @@ public class MateriaDatos {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al insertar " + ex.getMessage());
 
-        }   
+        }
     }
 
     public static Materia buscarMateriaPorId(int id) {
@@ -101,13 +101,13 @@ public class MateriaDatos {
 
     public static void modicarMateria(Materia materia) {
 
-        String sql = "update materia set nombre = ?, año = ? where idMateria = ?";
+        String sql = "update materia set idMateria = ? where (nombre = ? and año = ?)";
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, materia.getNombre());
-            ps.setInt(2, materia.getYear());
-            ps.setInt(3, materia.getIdMateria());
+            ps.setInt(1, materia.getIdMateria());
+            ps.setString(2, materia.getNombre());
+            ps.setInt(3, materia.getYear());
             int exito = ps.executeUpdate();
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Materia Actualizado");
@@ -140,27 +140,27 @@ public class MateriaDatos {
         }
 
     }
-    
-    public static void guardarMateriaConId(Materia materia) {
 
-        String sql = "insert into materia(IdMateria, nombre, año, estado) value(?, ?, ?, ?)";
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, materia.getIdMateria());
-            ps.setString(2, materia.getNombre());
-            ps.setInt(3, materia.getYear());
-            ps.setBoolean(4, materia.isEstado());
-            int p = ps.executeUpdate();
-            if (p > 0) {
-                JOptionPane.showMessageDialog(null, "Se agrego con exito");
-            }
-            ps.close();
-            JOptionPane.showMessageDialog(null, ">>> Guardado <<<");
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al insertar " + ex.getMessage());
-
-        }   
-    }
+//    public static void guardarMateriaConId(Materia materia) {
+//
+//        String sql = "insert into materia(IdMateria, nombre, año, estado) value(?, ?, ?, ?)";
+//        try {
+//            ps = con.prepareStatement(sql);
+//            ps.setInt(1, materia.getIdMateria());
+//            ps.setString(2, materia.getNombre());
+//            ps.setInt(3, materia.getYear());
+//            ps.setBoolean(4, materia.isEstado());
+//            int p = ps.executeUpdate();
+//            if (p > 0) {
+//                JOptionPane.showMessageDialog(null, "Se agrego con exito");
+//            }
+//            ps.close();
+//            JOptionPane.showMessageDialog(null, ">>> Guardado <<<");
+//
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error al insertar " + ex.getMessage());
+//
+//        }
+//    }
 
 }
