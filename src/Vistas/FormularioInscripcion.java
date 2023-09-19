@@ -55,7 +55,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
         jLabel6 = new javax.swing.JLabel();
         jRBMatariasInscriptas = new javax.swing.JRadioButton();
         jBGuardar = new javax.swing.JButton();
-        jBEliminar = new javax.swing.JButton();
+        jBAnularInscrip = new javax.swing.JButton();
         jBSalir = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         jRBMateriasNoInscriptas = new javax.swing.JRadioButton();
@@ -108,18 +108,23 @@ private DefaultTableModel modelo=new DefaultTableModel()
             }
         });
 
-        jBEliminar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBEliminar.setText("Anular Inscripción");
-        jBEliminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 0), java.awt.Color.black, java.awt.Color.blue, java.awt.Color.orange));
-        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+        jBAnularInscrip.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jBAnularInscrip.setText("Anular Inscripción");
+        jBAnularInscrip.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 0), java.awt.Color.black, java.awt.Color.blue, java.awt.Color.orange));
+        jBAnularInscrip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBEliminarActionPerformed(evt);
+                jBAnularInscripActionPerformed(evt);
             }
         });
 
         jBSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jBSalir.setText("Salir");
         jBSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 0), java.awt.Color.black, java.awt.Color.blue, java.awt.Color.orange));
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
+            }
+        });
 
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +168,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
                 .addGap(127, 127, 127)
                 .addComponent(jBGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBAnularInscrip, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -219,7 +224,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBGuardar)
-                            .addComponent(jBEliminar))
+                            .addComponent(jBAnularInscrip))
                         .addGap(27, 27, 27))))
         );
 
@@ -243,17 +248,22 @@ private DefaultTableModel modelo=new DefaultTableModel()
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
         Alumno alumnoSeleccionado=(Alumno)jComboBox1.getSelectedItem();
-        Inscripcion insc=new Inscripcion(alumnoSeleccionado,materia);//problema con la nota, puse un constructor en la clase inscripcion donde le paso por parámetro un alumno y una materia
+        int nota=0;
         if(jComboBox1.getSelectedItem()!=null&&jRBMateriasNoInscriptas.isSelected()){
+            Inscripcion insc=new Inscripcion(nota,alumnoSeleccionado,materia);
             InscripcionDatos.guardarInscripcion(insc);
         }
             
     }//GEN-LAST:event_jBGuardarActionPerformed
 
-    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBEliminarActionPerformed
-
+    private void jBAnularInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnularInscripActionPerformed
+        Alumno alumnoSeleccionado=(Alumno)jComboBox1.getSelectedItem();
+        if(jComboBox1.getSelectedItem()!=null&&jRBMatariasInscriptas.isSelected()){
+        InscripcionDatos.borrarInscripcionMatAlu(alumnoSeleccionado.getIdAlumno(), materia.getIdMateria());
+       
+         }
+    }//GEN-LAST:event_jBAnularInscripActionPerformed
+   
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
 
         cargarTabla();
@@ -274,9 +284,13 @@ private DefaultTableModel modelo=new DefaultTableModel()
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
+         dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jBSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBAnularInscrip;
     private javax.swing.JButton jBGuardar;
     private javax.swing.JButton jBSalir;
     private javax.swing.JComboBox<Alumno> jComboBox1;

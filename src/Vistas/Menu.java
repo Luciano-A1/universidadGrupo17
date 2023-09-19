@@ -55,7 +55,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuManInscrip = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuAlumxMat = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
+        jMSalir = new javax.swing.JMenu();
 
         jMenu5.setText("jMenu5");
 
@@ -136,13 +136,13 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu8.setText("Salir");
-        jMenu8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu8ActionPerformed(evt);
+        jMSalir.setText("Salir");
+        jMSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMSalirMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu8);
+        jMenuBar1.add(jMSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -170,11 +170,6 @@ public class Menu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuFormAlumActionPerformed
 
-    private void jMenu8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu8ActionPerformed
-     this.setVisible(false);
-      
-    }//GEN-LAST:event_jMenu8ActionPerformed
-
     private void jMenuManInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuManInscripActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
@@ -198,6 +193,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
 
+
     private void jMenuAdminNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAdminNotaActionPerformed
         Escritorio.removeAll();
         Escritorio.repaint();
@@ -206,6 +202,11 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.add(cargaDeNotas);
         Escritorio.moveToFront(cargaDeNotas);
     }//GEN-LAST:event_jMenuAdminNotaActionPerformed
+
+    private void jMSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMSalirMouseClicked
+      dispose();
+    }//GEN-LAST:event_jMSalirMouseClicked
+
 
     /**
      * @param args the command line arguments
@@ -244,6 +245,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Escritorio;
+    private javax.swing.JMenu jMSalir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -251,7 +253,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuItem jMenuAdminNota;
     private javax.swing.JMenuItem jMenuAlumxMat;
     private javax.swing.JMenuBar jMenuBar1;
