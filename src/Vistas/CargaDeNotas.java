@@ -223,7 +223,14 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         
         Alumno idAlum = (Alumno) jcbAlumno.getSelectedItem();
         InscripcionDatos.actualizarNota(idAlum.getIdAlumno(), idMat, nota);
-
+//         if(jcbAlumno.getSelectedItem()!=null&&fila!=-1){
+//            Alumno idA = (Alumno) jcbAlumno.getSelectedItem();
+//            int idM=Integer.parseInt(jtNotas.getValueAt(fila,0).toString());
+//            int nota=Integer.parseInt(jtNotas.getValueAt(fila,2).toString());
+//            InscripcionDatos.actualizarNota(idA.getIdAlumno(), idM, nota);
+//        }else{
+//            JOptionPane.showMessageDialog(null,"Debe seleccionar un alumno y debe modificar la nota para poder guardar");
+//        }
     }
   
     
