@@ -68,8 +68,9 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Selecionar un Alumno");
 
+        jBGuardar.setBackground(new java.awt.Color(0, 0, 0));
         jBGuardar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jBGuardar.setText("Guardar");
+        jBGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Save_37110.png"))); // NOI18N
         jBGuardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 0), java.awt.Color.black, java.awt.Color.blue, java.awt.Color.orange));
         jBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +142,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jBGuardar)
@@ -216,6 +217,9 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
     }
 
     public void actualizarNotas() {
+        
+        try {
+            
         int fila = jtNotas.getSelectedRow();
         
         int idMat = Integer.parseInt(this.jtNotas.getValueAt(fila, 0).toString());
@@ -223,6 +227,10 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         
         Alumno idAlum = (Alumno) jcbAlumno.getSelectedItem();
         InscripcionDatos.actualizarNota(idAlum.getIdAlumno(), idMat, nota);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese un numero en el campo notas");
+            
+        }
 //         if(jcbAlumno.getSelectedItem()!=null&&fila!=-1){
 //            Alumno idA = (Alumno) jcbAlumno.getSelectedItem();
 //            int idM=Integer.parseInt(jtNotas.getValueAt(fila,0).toString());
