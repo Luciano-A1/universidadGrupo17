@@ -48,8 +48,10 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuFormAlum = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuFormMat = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuAdminNota = new javax.swing.JMenuItem();
         jMenuManInscrip = new javax.swing.JMenuItem();
@@ -97,6 +99,14 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuFormAlum);
 
+        jMenuItem1.setText("Actualizar Alumnos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Materia");
@@ -108,6 +118,14 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuFormMat);
+
+        jMenuItem2.setText("Actulizar Materias");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
 
         jMenuBar1.add(jMenu2);
 
@@ -202,7 +220,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuFormMatActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuAdminNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAdminNotaActionPerformed
@@ -217,6 +235,28 @@ public class Menu extends javax.swing.JFrame {
     private void jMSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMSalirMouseClicked
          dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jMSalirMouseClicked
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // actualizar Materias
+        this.Escritorio.removeAll();
+        this.Escritorio.repaint();
+        ActualizarMaterias actualizarMateria = new ActualizarMaterias();
+        actualizarMateria.setVisible(true);
+        this.Escritorio.add(actualizarMateria);
+        this.Escritorio.moveToFront(actualizarMateria);
+        actualizarMateria.setLocation(120, 20);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // Actualizar Alumnos
+        this.Escritorio.removeAll();
+        this.Escritorio.repaint();
+        ActualizarAlumnos actualizarAlumnos = new ActualizarAlumnos();
+        actualizarAlumnos.setVisible(true);
+        this.Escritorio.add(actualizarAlumnos);
+        this.Escritorio.moveToFront(actualizarAlumnos);
+        actualizarAlumnos.setLocation(120, 20);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +308,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuFormAlum;
     private javax.swing.JMenuItem jMenuFormMat;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuManInscrip;
     // End of variables declaration//GEN-END:variables
