@@ -208,13 +208,13 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
     }
 
     private void cargarTabla() {
-        modelo.setRowCount(0);
+    modelo.setRowCount(0);
         Alumno alumnoSeleccionado = (Alumno) jcbAlumno.getSelectedItem();
         int idA = alumnoSeleccionado.getIdAlumno();
         for (Inscripcion insc : InscripcionDatos.obtenerInscripcionPorAlumno(idA)) {
-            modelo.addRow(new Object[]{insc.getMateria().getIdMateria(), insc.getMateria().getNombre(), insc.getNota()});
+            modelo.addRow(new Object[]{insc.getMateria().getIdMateria(), insc.getMateria().getNombre(), insc.getNota()});          
         }
-    }
+}
 
     public void actualizarNotas() {
         
@@ -233,7 +233,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         }catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese un numero en el campo notas");
             
-        }
+        }      
 //         if(jcbAlumno.getSelectedItem()!=null&&fila!=-1){
 //            Alumno idA = (Alumno) jcbAlumno.getSelectedItem();
 //            int idM=Integer.parseInt(jtNotas.getValueAt(fila,0).toString());

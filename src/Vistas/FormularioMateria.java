@@ -296,13 +296,16 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // Eliminar
+       try{
         int idMateria = Integer.parseInt(this.jtCod.getText());
         MateriaDatos.eliminarMateria(idMateria);
         this.jtCod.setText("");
         this.jtNom.setText("");
         this.jtAño.setText("");
         this.jRBEstado.setSelected(false);
-
+} catch(NumberFormatException e){
+    JOptionPane.showMessageDialog(null,"Debe realizar una búsqueda antes de eliminar una materia");
+}
     }//GEN-LAST:event_jBEliminarActionPerformed
 
 

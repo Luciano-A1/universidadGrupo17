@@ -266,11 +266,12 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
                 bandera = false;
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Para el DNI ingrese números " + e.getMessage());
+                jTDNI.setText("");
             }
 
         } else {
             JOptionPane.showMessageDialog(null, "Debe presionar el botón Nuevo");
-        }
+            }
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
@@ -290,6 +291,10 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // Borrar Alumno
+        if (jTApellido.getText().isEmpty() || jTNombre.getText().isEmpty() || jDateChooser1.getDate() == null) {
+                    JOptionPane.showMessageDialog(null, "Debe realizar una búsqueda antes de eliminar un alumno");
+                    return;
+                }
         Alumno alu = AlumnosDatos.buscarAlumnosPorDni(Integer.parseInt(this.jTDNI.getText()));
         AlumnosDatos.eliminarAlumno(alu.getIdAlumno());
         this.jTDNI.setText("");
@@ -303,7 +308,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame {
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
 
     }//GEN-LAST:event_jPanel1MouseClicked
-
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;

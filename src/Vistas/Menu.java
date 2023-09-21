@@ -21,7 +21,6 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         setLocationRelativeTo(null);
-      //  setSize(800,600);
     }
 
     /**
@@ -192,7 +191,7 @@ public class Menu extends javax.swing.JFrame {
         formularioAlumno.setVisible(true);
         Escritorio.add(formularioAlumno);
         Escritorio.moveToFront(formularioAlumno);
-        
+        formularioAlumno.setLocation(40,40);
     }//GEN-LAST:event_jMenuFormAlumActionPerformed
 
     private void jMSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMSalirActionPerformed
@@ -207,6 +206,7 @@ public class Menu extends javax.swing.JFrame {
         formularioInscripcion.setVisible(true);
         Escritorio.add(formularioInscripcion);
         Escritorio.moveToFront(formularioInscripcion);
+        formularioInscripcion.setLocation(120,0);
     }//GEN-LAST:event_jMenuManInscripActionPerformed
 
     private void jMenuFormMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormMatActionPerformed
@@ -217,6 +217,7 @@ public class Menu extends javax.swing.JFrame {
         formulariomateria.setVisible(true);
         this.Escritorio.add(formulariomateria);
         this.Escritorio.moveToFront(formulariomateria);
+        formulariomateria.setLocation(90,60);
     }//GEN-LAST:event_jMenuFormMatActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
@@ -230,6 +231,7 @@ public class Menu extends javax.swing.JFrame {
         cargaDeNotas.setVisible(true);
         Escritorio.add(cargaDeNotas);
         Escritorio.moveToFront(cargaDeNotas);
+        cargaDeNotas.setLocation(90,60);
     }//GEN-LAST:event_jMenuAdminNotaActionPerformed
 
     private void jMSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMSalirMouseClicked
@@ -244,7 +246,7 @@ public class Menu extends javax.swing.JFrame {
         actualizarMateria.setVisible(true);
         this.Escritorio.add(actualizarMateria);
         this.Escritorio.moveToFront(actualizarMateria);
-        actualizarMateria.setLocation(120, 20);
+        actualizarMateria.setLocation(120, 30);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

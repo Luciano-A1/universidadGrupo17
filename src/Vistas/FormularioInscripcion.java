@@ -253,9 +253,9 @@ private DefaultTableModel modelo=new DefaultTableModel()
             Inscripcion insc=new Inscripcion(0,alumnoSeleccionado,materia);
             InscripcionDatos.guardarInscripcion(insc);
         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno y una materia");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno y una materia del casillero Materias No Inscriptas para poder anular la inscripción");
         }
-            
+          
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnularInscripcionActionPerformed
@@ -263,7 +263,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
         if(jComboBox1.getSelectedItem()!=null&&jRBMatariasInscriptas.isSelected()){
         InscripcionDatos.borrarInscripcionMatAlu(alumnoSeleccionado.getIdAlumno(),materia.getIdMateria());
          }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno y una materia");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno y una materia del casillero Materias Inscriptas para poder anular la inscripción");
         }
     }//GEN-LAST:event_jBAnularInscripcionActionPerformed
 
