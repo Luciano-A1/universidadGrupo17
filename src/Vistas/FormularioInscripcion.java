@@ -281,7 +281,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
         int filaSeleccionada=jTable1.getSelectedRow();
         if(filaSeleccionada!=-1){
             int id=(int)jTable1.getValueAt(filaSeleccionada, 0);
-            String nombre=(String)jTable1.getValueAt(filaSeleccionada, 1);//no sé si será necesario pero por las dudas
+            String nombre=(String)jTable1.getValueAt(filaSeleccionada, 1);
             int year=(int)jTable1.getValueAt(filaSeleccionada, 2);
              materia = new Materia(id,year,nombre,true);
         }

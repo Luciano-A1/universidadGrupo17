@@ -140,7 +140,7 @@ public class ActualizarMaterias extends javax.swing.JInternalFrame {
         String nombreM = this.jTextFieldNombreM.getText();
         modelo.setRowCount(0);
         for (Materia mat : MateriaDatos.listarMaterias()) {
-            if (mat.getNombre().startsWith(nombreM)) {
+            if (mat.getNombre().toLowerCase().startsWith(nombreM.toLowerCase())) {
                 int id = mat.getIdMateria();
                 int anio = mat.getYear();
                 String nom = mat.getNombre();
@@ -160,7 +160,6 @@ public class ActualizarMaterias extends javax.swing.JInternalFrame {
             String nombre = modelo.getValueAt(filaSelecionada, 2).toString();
             boolean est = (boolean) modelo.getValueAt(filaSelecionada, 3);
             MateriaDatos.modicarMateria(new Materia(idMat, anio, nombre, est));
-
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione una fila antes de intentar actualizar.", "Error", JOptionPane.ERROR_MESSAGE);
         }
