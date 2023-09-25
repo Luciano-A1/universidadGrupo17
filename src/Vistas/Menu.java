@@ -151,6 +151,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu4.setText("Consulta");
 
         jMenuAlumxMat.setText("Alumno por materia");
+        jMenuAlumxMat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuAlumxMatActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuAlumxMat);
 
         jMenuBar1.add(jMenu4);
@@ -259,6 +264,16 @@ public class Menu extends javax.swing.JFrame {
         this.Escritorio.moveToFront(actualizarAlumnos);
         actualizarAlumnos.setLocation(10, 20);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuAlumxMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAlumxMatActionPerformed
+        // ConsultasPorAlumnosPorMateria
+        this.Escritorio.removeAll();
+        this.Escritorio.repaint();
+        ConsultasPorAlumnosPorMateria cam = new ConsultasPorAlumnosPorMateria();
+        cam.setVisible(true);
+        this.Escritorio.add(cam);
+        this.Escritorio.moveToFront(cam);
+    }//GEN-LAST:event_jMenuAlumxMatActionPerformed
 
     /**
      * @param args the command line arguments

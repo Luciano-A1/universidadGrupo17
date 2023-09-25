@@ -1,20 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package Vistas;
+
+import AccesoDatos.InscripcionDatos;
+import AccesoDatos.MateriaDatos;
+import Entidades.Alumno;
+import Entidades.Materia;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author lucia
  */
 public class ConsultasPorAlumnosPorMateria extends javax.swing.JInternalFrame {
+    
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
 
-    /**
-     * Creates new form ConsultasPorAlumnosPorMateria
-     */
     public ConsultasPorAlumnosPorMateria() {
         initComponents();
+        cargarComboBox();
+        armarCabeceraTabla();
     }
 
     /**
@@ -55,7 +62,11 @@ public class ConsultasPorAlumnosPorMateria extends javax.swing.JInternalFrame {
         jBSalir.setText("Salir");
         jBSalir.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(255, 0, 0), java.awt.Color.black, java.awt.Color.blue, java.awt.Color.orange));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,14 +134,41 @@ public class ConsultasPorAlumnosPorMateria extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        cargarTabla();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBSalir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Materia> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarComboBox() {
+        for (Materia mat : MateriaDatos.listarMaterias()) {
+            jComboBox1.addItem(mat);
+        }
+    }
+    
+    private void armarCabeceraTabla() {
+        modelo.addColumn("Id");
+        modelo.addColumn("Dni");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Nombre");
+        jTable1.setModel(modelo);
+    }
+    
+    private void cargarTabla() {
+        modelo.setRowCount(0);
+        Materia matSelec = (Materia) this.jComboBox1.getSelectedItem();
+        for (Alumno alu : InscripcionDatos.obtenerAlumnosPorMateria(matSelec.getIdMateria())) {
+            modelo.addRow(new Object[]{alu.getIdAlumno(), alu.getDni(), alu.getApellido(), alu.getNombre()});
+        }
+    }
+    
 }
