@@ -4,17 +4,36 @@
  */
 package Vistas;
 
+import AccesoDatos.AlumnosDatos;
+import Entidades.Alumno;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lucia
  */
 public class ActualizarAlumnos extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ActulizarAlumnos
-     */
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int fila, int columna) {
+            if (columna != 0 && columna != 5) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    };
+
     public ActualizarAlumnos() {
         initComponents();
+        armarCabezera();
+
     }
 
     /**
@@ -26,13 +45,18 @@ public class ActualizarAlumnos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jtAlumTabla = new javax.swing.JTable();
+        jtfBuscador = new javax.swing.JTextField();
+        jbActualizar = new javax.swing.JButton();
+        jcbBuscarPor = new javax.swing.JComboBox<>();
+        jButton = new javax.swing.JButton();
+        jbSalir = new javax.swing.JButton();
+
+        jLabel2.setText("jLabel2");
 
         setClosable(true);
         setIconifiable(true);
@@ -40,15 +64,11 @@ public class ActualizarAlumnos extends javax.swing.JInternalFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Actualizar Alumnos");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Buscar por Apellido: ");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtAlumTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,46 +79,89 @@ public class ActualizarAlumnos extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtAlumTabla);
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jButton1.setText("Actualizar");
+        jbActualizar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jbActualizar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Juan\\Documents\\NetBeansProjects\\universidadGrupo17\\build\\classes\\Imagenes\\17_104874.png")); // NOI18N
+        jbActualizar.setText("Actualizar Datos");
+        jbActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbActualizarActionPerformed(evt);
+            }
+        });
+
+        jcbBuscarPor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mostrar Todo", "Buscar Por ID", "Buscar Por DNI" }));
+        jcbBuscarPor.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbBuscarPorItemStateChanged(evt);
+            }
+        });
+
+        jButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Lupa.png"))); // NOI18N
+        jButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonActionPerformed(evt);
+            }
+        });
+
+        jbSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cruz.png"))); // NOI18N
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(243, 243, 243))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(68, 68, 68)
+                            .addComponent(jcbBuscarPor, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jtfBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton)
+                            .addGap(128, 128, 128))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jbActualizar)
+                            .addGap(187, 187, 187)
+                            .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(jButton1)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(0, 33, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtfBuscador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcbBuscarPor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jbActualizar)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,14 +178,130 @@ public class ActualizarAlumnos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
+        actualizarAlumno();
+    }//GEN-LAST:event_jbActualizarActionPerformed
+
+    private void jButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActionPerformed
+        buscarPor();
+    }//GEN-LAST:event_jButtonActionPerformed
+
+    private void jcbBuscarPorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbBuscarPorItemStateChanged
+        jtfBuscador.setText(null);
+        habilitarCampo();
+    }//GEN-LAST:event_jcbBuscarPorItemStateChanged
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton jbActualizar;
+    private javax.swing.JButton jbSalir;
+    private javax.swing.JComboBox<String> jcbBuscarPor;
+    private javax.swing.JTable jtAlumTabla;
+    private javax.swing.JTextField jtfBuscador;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void armarCabezera() {
+
+        modelo.addColumn("IdAlumno");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Fecha de Nacimiento");
+        modelo.addColumn("Estado");
+        this.jtAlumTabla.setModel(modelo);
+
+    }
+
+    private void actualizarAlumno() {
+        //Metodo de Boton Actualizar
+
+        int fila = this.jtAlumTabla.getSelectedRow();
+
+        int idAlum = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
+        int dni = Integer.parseInt(modelo.getValueAt(fila, 1).toString());
+        String ap = modelo.getValueAt(fila, 2).toString();
+        String nom = modelo.getValueAt(fila, 3).toString();
+        LocalDate fecha = LocalDate.parse(modelo.getValueAt(fila, 4).toString());
+        boolean est = (boolean) modelo.getValueAt(fila, 5);
+
+        AlumnosDatos.modicarAlumno(new Alumno(idAlum, dni, ap, nom, fecha, est));
+    }
+
+    private void buscarPor() {
+        int op = jcbBuscarPor.getSelectedIndex();
+        String campo = jtfBuscador.getText();
+
+        // Limpiar la tabla antes de agregar nuevos datos
+        modelo.setRowCount(0);
+
+        switch (op) {
+            case 0:
+                for (Alumno alum : AlumnosDatos.listarAlumno()) {
+                    modelo.addRow(new Object[]{alum.getIdAlumno(), alum.getDni(), alum.getApellido(), alum.getNombre(), alum.getFechaNacimiento(), alum.isEstado()});
+                }
+                jtfBuscador.setEnabled(false);
+                break;
+            case 1:
+                try {
+                    jtfBuscador.setEnabled(true);
+
+                    if (!jtfBuscador.getText().isEmpty()) {
+                        int id = Integer.parseInt(campo);
+                        Alumno alum = AlumnosDatos.buscarAlumnosPorId(id);
+                        modelo.addRow(new Object[]{alum.getIdAlumno(), alum.getDni(), alum.getApellido(), alum.getNombre(), alum.getFechaNacimiento(), alum.isEstado()});
+                    }
+                    jtfBuscador.setText(null);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Campo debe ser un número");
+                } catch (NullPointerException e) {
+                    JOptionPane.showMessageDialog(null, "No se encontraron datos");
+                }
+                break;
+
+            case 2:
+                try {
+                    jtfBuscador.setEnabled(true);
+
+                    if (!jtfBuscador.getText().isEmpty()) {
+                        int dni = Integer.parseInt(campo);
+                        Alumno alum = AlumnosDatos.buscarAlumnosPorDni(dni);
+                        modelo.addRow(new Object[]{alum.getIdAlumno(), alum.getDni(), alum.getApellido(), alum.getNombre(), alum.getFechaNacimiento(), alum.isEstado()});
+                    }
+                    jtfBuscador.setText(null);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Campo debe ser un número");
+                } catch (NullPointerException e) {
+                    JOptionPane.showMessageDialog(null, "No se encontraron datos");
+                }
+                break;
+        }
+
+    }
+
+    private void habilitarCampo() {
+        int op = jcbBuscarPor.getSelectedIndex();
+
+        switch (op) {
+            case 0:
+                jtfBuscador.setEnabled(false);
+                break;
+            case 1:
+                jtfBuscador.setEnabled(true);
+                break;
+            case 2:
+                jtfBuscador.setEnabled(true);
+                break;
+        }
+
+    }
+
+}//fin class

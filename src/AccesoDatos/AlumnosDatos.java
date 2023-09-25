@@ -65,7 +65,7 @@ public class AlumnosDatos {
                 alumno.setEstado(true);
 
             } else {
-                JOptionPane.showMessageDialog(null, "Alumno no activo");
+                JOptionPane.showMessageDialog(null, "El Alumno no esta activo o no existe");
             }
             ps.close();
 
@@ -94,7 +94,7 @@ public class AlumnosDatos {
                 alumno.setEstado(true);
 
             } else {
-                JOptionPane.showMessageDialog(null, "Alumno no activo");
+                JOptionPane.showMessageDialog(null, "El Alumno no esta activo o no existe");
             }
             ps.close();
 

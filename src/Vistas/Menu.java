@@ -257,7 +257,7 @@ public class Menu extends javax.swing.JFrame {
         actualizarAlumnos.setVisible(true);
         this.Escritorio.add(actualizarAlumnos);
         this.Escritorio.moveToFront(actualizarAlumnos);
-        actualizarAlumnos.setLocation(120, 20);
+        actualizarAlumnos.setLocation(10, 20);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

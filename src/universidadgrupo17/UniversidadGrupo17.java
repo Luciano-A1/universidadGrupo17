@@ -13,29 +13,29 @@ public class UniversidadGrupo17 {
 
     public static void main(String[] args) {
         //********************Alumnos********************
-
-        Alumno alu1 = new Alumno(41885655, "Ledesma", "Jeremias", LocalDate.of(1998, 12, 24), true);
-        Alumno alu2 = new Alumno(41885865, "Hernandez", "Juan", LocalDate.of(1998, 2, 24), false);
-        Alumno alu3 = new Alumno(42285655, "Bonacci", "Guadalupe", LocalDate.of(1998, 6, 24), true);
-        Alumno alu4 = new Alumno(41885677, "Molina", "Luciano", LocalDate.of(1998, 1, 14), true);
-        Alumno alu5 = new Alumno(41995677, "Galeassi", "María Florencia", LocalDate.of(1998, 4, 14), true);
-        Alumno alu6 = new Alumno(55094020, "Fuenzalida", "Evaristo", LocalDate.of(2001, 11, 13), true);
-        Alumno alu7 = new Alumno(57157050, "Cayuqueo", "Camila", LocalDate.of(2002, 12, 5), false);
-        Alumno alu8 = new Alumno(54369140, "Roncaglia", "Romero", LocalDate.of(2003, 5, 15), true);
+//
+//        Alumno alu1 = new Alumno(41885655, "Ledesma", "Jeremias", LocalDate.of(1998, 12, 24), true);
+//        Alumno alu2 = new Alumno(41885865, "Hernandez", "Juan", LocalDate.of(1998, 2, 24), false);
+//        Alumno alu3 = new Alumno(42285655, "Bonacci", "Guadalupe", LocalDate.of(1998, 6, 24), true);
+//        Alumno alu4 = new Alumno(41885677, "Molina", "Luciano", LocalDate.of(1998, 1, 14), true);
+//        Alumno alu5 = new Alumno(41995677, "Galeassi", "María Florencia", LocalDate.of(1998, 4, 14), true);
+//        Alumno alu6 = new Alumno(55094020, "Fuenzalida", "Evaristo", LocalDate.of(2001, 11, 13), true);
+//        Alumno alu7 = new Alumno(57157050, "Cayuqueo", "Camila", LocalDate.of(2002, 12, 5), false);
+//        Alumno alu8 = new Alumno(54369140, "Roncaglia", "Romero", LocalDate.of(2003, 5, 15), true);
 //        AlumnosDatos.guardarAlumno(alu6);
 //        AlumnosDatos.guardarAlumno(alu7);
 //        AlumnosDatos.guardarAlumno(alu8);
 //        AlumnosDatos.listaAlumno();
 //------------------------------------------------------------------------------
         //********************Materias********************
-        Materia m1 = new Materia(1, "Matemáticas", true);
-        Materia m2 = new Materia(1, "Historia", true);
-        Materia m3 = new Materia(2, "Comunicación", false);
-        Materia m4 = new Materia(1, "Programación I", true);
-        Materia m5 = new Materia(2, "Programación II", true);
-        Materia m6 = new Materia(3, "Fundamentos filosóficos de la programación", true);
-        Materia m7 = new Materia(3, "Programación III", false);
-        Materia m8 = new Materia(3, "Cyberliteratura", true);
+//        Materia m1 = new Materia(1, "Matemáticas", true);
+//        Materia m2 = new Materia(1, "Historia", true);
+//        Materia m3 = new Materia(2, "Comunicación", false);
+//        Materia m4 = new Materia(1, "Programación I", true);
+//        Materia m5 = new Materia(2, "Programación II", true);
+//        Materia m6 = new Materia(3, "Fundamentos filosóficos de la programación", true);
+//        Materia m7 = new Materia(3, "Programación III", false);
+//        Materia m8 = new Materia(3, "Cyberliteratura", true);
 
 //        MateriaDatos.guardarMateria(m8);
 //        MateriaDatos.guardarMateria(m7);
@@ -99,9 +99,9 @@ public class UniversidadGrupo17 {
 //                System.out.println("Nombre: "+materia.toString());
 //        }
 //----------       ******************Materias No Cursadas********************* 
-        for (Materia materia : InscripcionDatos.obtenerMateriasNoCursadas(2)) {
-            System.out.println("Nombre: " + materia.toString());
-        }
+//        for (Materia materia : InscripcionDatos.obtenerMateriasNoCursadas(2)) {
+//            System.out.println("Nombre: " + materia.toString());
+//        }
 //----------       ******************Alumnos por Materia********************* 
 //             for(Alumno alumno:InscripcionDatos.obtenerAlumnosPorMateria(8)){
 //                  System.out.println("ID: "+alumno.getIdAlumno());
@@ -115,6 +115,11 @@ public class UniversidadGrupo17 {
 //          InscripcionDatos.obtenerInscripcionPorAlumno(3);
 //          InscripcionDatos.obtenerMateriasCursadas(3);
 //          InscripcionDatos.obtenerMateriasNoCursadas(3);
+
+
+
+
+
 
     }
 

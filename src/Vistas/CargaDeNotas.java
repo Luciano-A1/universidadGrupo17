@@ -216,7 +216,7 @@ public class CargaDeNotas extends javax.swing.JInternalFrame {
         }
 }
 
-    public void actualizarNotas() {
+    private void actualizarNotas() {
         
         try {
             

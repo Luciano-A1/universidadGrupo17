@@ -2,6 +2,7 @@ package Vistas;
 
 import AccesoDatos.MateriaDatos;
 import Entidades.Materia;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
