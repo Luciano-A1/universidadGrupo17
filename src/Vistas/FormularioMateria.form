@@ -234,6 +234,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtNom">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtNomKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtA&#xf1;o">
           <Events>

@@ -56,14 +56,7 @@ public class Materia {
         this.estado = estado;
     }
 
-    @Override
-    public String toString() {
-        return    "Id: " + idMateria + "\n"
-                + "Nombre: " + nombre + "\n"
-                + "Año: " + year + "\n"
-                + "Estado: " + estado + "\n"
-                + "******************************";
-    }
+    
     
 //    public Materia obtenerMateriaCompleto(Materia materia) {
 //        List<Materia> listaMat = MateriaDatos.listaMaterias;
@@ -78,5 +71,10 @@ public class Materia {
 //        }
 //        return mat;
 //    }
+
+    @Override
+    public String toString() {
+        return "idMateria = " + idMateria + ", año = " + year + ", nombre = " + nombre;
+    }
 
 }

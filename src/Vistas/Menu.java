@@ -273,6 +273,7 @@ public class Menu extends javax.swing.JFrame {
         cam.setVisible(true);
         this.Escritorio.add(cam);
         this.Escritorio.moveToFront(cam);
+        cam.setLocation(120, 20);
     }//GEN-LAST:event_jMenuAlumxMatActionPerformed
 
     /**

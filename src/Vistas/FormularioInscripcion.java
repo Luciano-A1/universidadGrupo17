@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package Vistas;
 
 import AccesoDatos.AlumnosDatos;
@@ -18,13 +14,14 @@ import javax.swing.table.DefaultTableModel;
  * @author lucia
  */
 public class FormularioInscripcion extends javax.swing.JInternalFrame {
+
     Materia materia;
-private DefaultTableModel modelo=new DefaultTableModel()
-{
-     public boolean isCellEditable(int f,int c){
-        return false;
-    }
-};
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+
     /**
      * Creates new form FormularioInscripcion
      */
@@ -35,7 +32,7 @@ private DefaultTableModel modelo=new DefaultTableModel()
         ButtonGroup grupoMateria = new ButtonGroup();
         grupoMateria.add(jRBMatariasInscriptas);
         grupoMateria.add(jRBMateriasNoInscriptas);
-       
+
     }
 
     /**
@@ -244,26 +241,35 @@ private DefaultTableModel modelo=new DefaultTableModel()
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRBMatariasInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBMatariasInscriptasActionPerformed
-            cargarTabla();        // TODO add your handling code here:
+        cargarTabla();        // TODO add your handling code here:
+        radiobotton();
     }//GEN-LAST:event_jRBMatariasInscriptasActionPerformed
 
     private void jBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGuardarActionPerformed
-        Alumno alumnoSeleccionado=(Alumno)jComboBox1.getSelectedItem();
-        if(jComboBox1.getSelectedItem()!=null&&jRBMateriasNoInscriptas.isSelected()){
-            Inscripcion insc=new Inscripcion(0,alumnoSeleccionado,materia);
+        Alumno alumnoSeleccionado = (Alumno) jComboBox1.getSelectedItem();
+        if (jComboBox1.getSelectedItem() != null && jRBMateriasNoInscriptas.isSelected()) {
+            Inscripcion insc = new Inscripcion(0, alumnoSeleccionado, materia);
             InscripcionDatos.guardarInscripcion(insc);
-        }else{
+            int filaSelec = this.jTable1.getSelectedRow();
+            if (filaSelec != -1) {
+                modelo.removeRow(filaSelec);
+            }
+        } else {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno y una materia del casillero Materias No Inscriptas para poder anular la inscripción");
         }
-          
+
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBAnularInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAnularInscripcionActionPerformed
-         Alumno alumnoSeleccionado=(Alumno)jComboBox1.getSelectedItem();
-        if(jComboBox1.getSelectedItem()!=null&&jRBMatariasInscriptas.isSelected()){
-        InscripcionDatos.borrarInscripcionMatAlu(alumnoSeleccionado.getIdAlumno(),materia.getIdMateria());
-         }else{
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno y una materia del casillero Materias Inscriptas para poder anular la inscripción");
+        Alumno alumnoSeleccionado = (Alumno) jComboBox1.getSelectedItem();
+        if (jComboBox1.getSelectedItem() != null && jRBMatariasInscriptas.isSelected()) {
+            InscripcionDatos.borrarInscripcionMatAlu(alumnoSeleccionado.getIdAlumno(), materia.getIdMateria());
+            int filaSelec = this.jTable1.getSelectedRow();
+            if (filaSelec != -1) {
+                modelo.removeRow(filaSelec);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un alumno y una materia del casillero Materias Inscriptas para poder realizar la inscripción");
         }
     }//GEN-LAST:event_jBAnularInscripcionActionPerformed
 
@@ -275,20 +281,21 @@ private DefaultTableModel modelo=new DefaultTableModel()
 
     private void jRBMateriasNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBMateriasNoInscriptasActionPerformed
         cargarTabla();
+        radiobotton();
     }//GEN-LAST:event_jRBMateriasNoInscriptasActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int filaSeleccionada=jTable1.getSelectedRow();
-        if(filaSeleccionada!=-1){
-            int id=(int)jTable1.getValueAt(filaSeleccionada, 0);
-            String nombre=(String)jTable1.getValueAt(filaSeleccionada, 1);//no sé si será necesario pero por las dudas
-            int year=(int)jTable1.getValueAt(filaSeleccionada, 2);
-             materia = new Materia(id,year,nombre,true);
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
+            String nombre = (String) jTable1.getValueAt(filaSeleccionada, 1);//no sé si será necesario pero por las dudas
+            int year = (int) jTable1.getValueAt(filaSeleccionada, 2);
+            materia = new Materia(id, year, nombre, true);
         }
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-         dispose();        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jBSalirActionPerformed
 
 
@@ -309,30 +316,41 @@ private DefaultTableModel modelo=new DefaultTableModel()
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
-private void armarCabeceraTabla(){
-    modelo.addColumn("ID");
-    modelo.addColumn("Nombre");
-    modelo.addColumn("Año");
-    jTable1.setModel(modelo);
-}
-private void cargarComboBox(){
-    for(Alumno alumno:AlumnosDatos.listarAlumno()){
-        jComboBox1.addItem(alumno);
+private void armarCabeceraTabla() {
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Año");
+        jTable1.setModel(modelo);
     }
-}
-private void cargarTabla(){
-    modelo.setRowCount(0);
-    Alumno alumnoSeleccionado=(Alumno)jComboBox1.getSelectedItem();
-    int idA=alumnoSeleccionado.getIdAlumno();
-    if(jRBMatariasInscriptas.isSelected()){     
-    for (Materia materia : InscripcionDatos.obtenerMateriasCursadas(idA)) {
-        modelo.addRow(new Object[]{materia.getIdMateria(),materia.getNombre(),materia.getYear()});
-    }
-    }else if(jRBMateriasNoInscriptas.isSelected()){
-        for (Materia materia : InscripcionDatos.obtenerMateriasNoCursadas(idA)) {
-        modelo.addRow(new Object[]{materia.getIdMateria(),materia.getNombre(),materia.getYear()});
-    }
-    }
-}
-}
 
+    private void cargarComboBox() {
+        for (Alumno alumno : AlumnosDatos.listarAlumno()) {
+            jComboBox1.addItem(alumno);
+        }
+    }
+
+    private void cargarTabla() {
+        modelo.setRowCount(0);
+        Alumno alumnoSeleccionado = (Alumno) jComboBox1.getSelectedItem();
+        int idA = alumnoSeleccionado.getIdAlumno();
+        if (jRBMatariasInscriptas.isSelected()) {
+            for (Materia materia : InscripcionDatos.obtenerMateriasCursadas(idA)) {
+                modelo.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getYear()});
+            }
+        } else if (jRBMateriasNoInscriptas.isSelected()) {
+            for (Materia materia : InscripcionDatos.obtenerMateriasNoCursadas(idA)) {
+                modelo.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), materia.getYear()});
+            }
+        }
+    }
+    
+    private void radiobotton(){
+        if (jRBMateriasNoInscriptas.isSelected()) {
+            this.jBAnularInscripcion.setEnabled(false);
+            this.jBGuardar.setEnabled(true);
+        }else if (jRBMatariasInscriptas.isSelected()){
+            this.jBAnularInscripcion.setEnabled(true);
+            this.jBGuardar.setEnabled(false);
+        }
+    }
+}

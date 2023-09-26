@@ -87,6 +87,12 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Estado:");
 
+        jtNom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNomKeyTyped(evt);
+            }
+        });
+
         jtAño.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtAñoActionPerformed(evt);
@@ -291,22 +297,36 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Debe presionar el botón Nuevo", " Error ", JOptionPane.ERROR_MESSAGE);
 
         }
+        this.jtCod.setEditable(true);
 
     }//GEN-LAST:event_jBGuardarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
         // Eliminar
-       try{
-        int idMateria = Integer.parseInt(this.jtCod.getText());
-        MateriaDatos.eliminarMateria(idMateria);
-        this.jtCod.setText("");
-        this.jtNom.setText("");
-        this.jtAño.setText("");
-        this.jRBEstado.setSelected(false);
-} catch(NumberFormatException e){
-    JOptionPane.showMessageDialog(null,"Debe realizar una búsqueda antes de eliminar una materia");
-}
+        try {
+            int idMateria = Integer.parseInt(this.jtCod.getText());
+            MateriaDatos.eliminarMateria(idMateria);
+            this.jtCod.setText("");
+            this.jtNom.setText("");
+            this.jtAño.setText("");
+            this.jRBEstado.setSelected(false);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe realizar una búsqueda antes de eliminar una materia");
+        }
     }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jtNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNomKeyTyped
+        // para que los text field no tome numeros
+        int key = evt.getKeyChar();
+
+        boolean mayusculas = key >= 65 && key <= 90;
+        boolean minusculas = key >= 97 && key <= 122;
+        boolean espacio = key == 32;
+
+        if (!(minusculas || mayusculas || espacio)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtNomKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

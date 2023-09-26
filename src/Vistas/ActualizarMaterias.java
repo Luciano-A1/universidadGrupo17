@@ -78,6 +78,7 @@ public class ActualizarMaterias extends javax.swing.JInternalFrame {
         });
 
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/refresh.png"))); // NOI18N
         jButton1.setText("Actualizar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +104,7 @@ public class ActualizarMaterias extends javax.swing.JInternalFrame {
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
+                        .addGap(188, 188, 188)
                         .addComponent(jButton1)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
@@ -117,9 +118,9 @@ public class ActualizarMaterias extends javax.swing.JInternalFrame {
                     .addComponent(jTextFieldNombreM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,7 +142,7 @@ public class ActualizarMaterias extends javax.swing.JInternalFrame {
         String nombreM = this.jTextFieldNombreM.getText();
         modelo.setRowCount(0);
         for (Materia mat : MateriaDatos.listarMaterias()) {
-            if (mat.getNombre().startsWith(nombreM)) {
+            if (mat.getNombre().toLowerCase().startsWith(nombreM.toLowerCase())) {
                 int id = mat.getIdMateria();
                 int anio = mat.getYear();
                 String nom = mat.getNombre();
